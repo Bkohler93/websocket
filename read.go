@@ -196,7 +196,7 @@ func (c *Conn) readLoop(ctx context.Context) (header, error) {
 		if !c.client && !h.masked {
 			return header{}, errors.New("received unmasked frame from client")
 		}
-
+		fmt.Printf("received opcode[%d][%v]\n", h.opcode, h.opcode)
 		switch h.opcode {
 		case opClose, opPing, opPong:
 			err = c.handleControl(ctx, h)
