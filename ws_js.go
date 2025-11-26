@@ -1,4 +1,4 @@
-package websocket // import "github.com/coder/websocket"
+package websocket // import "github.com/Bkohler93/websocket"
 
 import (
 	"bytes"
@@ -15,8 +15,8 @@ import (
 	"sync/atomic"
 	"syscall/js"
 
-	"github.com/coder/websocket/internal/bpool"
-	"github.com/coder/websocket/internal/wsjs"
+	"github.com/Bkohler93/websocket/internal/bpool"
+	"github.com/Bkohler93/websocket/internal/wsjs"
 )
 
 // opcode represents a WebSocket opcode.
@@ -158,6 +158,9 @@ func (c *Conn) read(ctx context.Context) (MessageType, []byte, error) {
 		return 0, nil, ctx.Err()
 	case <-c.readSignal:
 	case <-c.closed:
+		if c.closeErr != nil {
+			return 0, nil, c.closeErr
+		}
 		return 0, nil, net.ErrClosed
 	}
 

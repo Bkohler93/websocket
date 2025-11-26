@@ -14,8 +14,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/coder/websocket/internal/errd"
-	"github.com/coder/websocket/internal/util"
+	"github.com/Bkohler93/websocket/internal/errd"
+	"github.com/Bkohler93/websocket/internal/util"
 )
 
 // Writer returns a writer bounded by the context that will write
